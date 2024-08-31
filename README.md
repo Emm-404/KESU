@@ -8,8 +8,8 @@
 
 2. **Install requirements:**
 ```setup
-conda create --name KERM python=3.8.0
-conda activate KERM
+conda create --name KESU python=3.8.0
+conda activate KESU
 pip install -r requirements.txt
 ```
 
