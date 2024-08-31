@@ -12,4 +12,11 @@
     conda activate KESU
     pip install -r requirements.txt
     ```
-3. **Doload Dataset:** Download dataset from [Dropbox](https://www.dropbox.com/sh/u3lhng7t2gq36td/AABAIdFnJxhhCg2ItpAhMtUBa?dl=0), including processed annotations, features and pretrained models from [VLN-DUET](https://github.com/cshizhe/VLN-DUET). Put the data in `datasets` directory.
+
+3. **Download Dataset:** Download dataset from [Dropbox](https://www.dropbox.com/sh/u3lhng7t2gq36td/AABAIdFnJxhhCg2ItpAhMtUBa?dl=0), including processed annotations, features and pretrained models from [VLN-DUET](https://github.com/cshizhe/VLN-DUET). Put the data in `datasets` directory.
+
+4. **Download Pretrained lxmert:**
+   '''setup
+   mkdir -p datasets/pretrained 
+   wget https://nlp.cs.unc.edu/data/model_LXRT.pth -P datasets/pretrained
+   '''
