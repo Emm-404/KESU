@@ -670,7 +670,6 @@ class GlocalTextPathCMT(BertPreTrainedModel):
 
         self.knowledges_linear = nn.Linear(config.hidden_size, 1)
         self.txt_linear = nn.Linear(config.hidden_size, 1)
-        self.fuse_linear = nn.Linear(config.hidden_size, 1)
         self.sigmoid = nn.Sigmoid()
         self.knowledge_proj = nn.Linear(512, 768)
 
@@ -700,9 +699,7 @@ class GlocalTextPathCMT(BertPreTrainedModel):
                 knowledges_embeds, None,
             )
 
-        vp_knowledges_embeds_weight = self.knowledges_linear(txt_knowledges_embeds)
-        txt_embeds_weight = self.txt_linear(txt_embeds)
-        aug_weight = self.sigmoid(vp_knowledges_embeds_weight + txt_embeds_weight)
+        aug_weight = self.sigmoid(self.knowledges_linear(txt_knowledges_embeds) + self.txt_linear(txt_embeds))
         txt_knowledges_embeds = torch.mul(aug_weight, txt_knowledges_embeds) + torch.mul((1 - aug_weight), txt_embeds)
 
         # trajectory embedding
@@ -763,9 +760,7 @@ class GlocalTextPathCMT(BertPreTrainedModel):
                 knowledges_embeds, None,
             )
 
-        vp_knowledges_embeds_weight = self.knowledges_linear(txt_knowledges_embeds)
-        txt_embeds_weight = self.txt_linear(txt_embeds)
-        aug_weight = self.sigmoid(vp_knowledges_embeds_weight + txt_embeds_weight)
+        aug_weight = self.sigmoid(self.knowledges_linear(txt_knowledges_embeds) + self.txt_linear(txt_embeds))
         txt_knowledges_embeds = torch.mul(aug_weight, txt_knowledges_embeds) + torch.mul((1 - aug_weight), txt_embeds)
 
         # gmap embeds
