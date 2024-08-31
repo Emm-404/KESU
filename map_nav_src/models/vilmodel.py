@@ -729,9 +729,7 @@ class GlocalTextPathNavCMT(BertPreTrainedModel):
                 knowledges_embeds, None,
             )
 
-        vp_knowledges_embeds_weight = self.instr_knowledges_linear(vp_knowledges_embeds)
-        txt_embeds_weight = self.instr_txt_linear(txt_embeds)
-        aug_weight = self.instr_sigmoid(vp_knowledges_embeds_weight + txt_embeds_weight)
+        aug_weight = self.instr_sigmoid(self.knowledges_linear(vp_knowledges_embeds) + self.txt_linear(txt_embeds))
         vp_knowledges_embeds = torch.mul(aug_weight, vp_knowledges_embeds) + torch.mul((1 - aug_weight), txt_embeds)
 
 
@@ -802,10 +800,6 @@ class GlocalTextPathNavCMT(BertPreTrainedModel):
         fuse_masks = torch.cat([vp_masks, gmap_masks], dim=1)
 
         vp_knowledges_embeds = self.knowledges_vp_encoder(knowledges_embeds, None, fuse_embeds, fuse_masks)
-        vp_knowledges_embeds_weight = self.knowledges_linear(vp_knowledges_embeds)
-        fuse_embeds_weight = self.fuse_linear(fuse_embeds)
-        aug_weight = self.sigmoid(vp_knowledges_embeds_weight + fuse_embeds_weight)
-        vp_knowledges_embeds = torch.mul(aug_weight, vp_knowledges_embeds) + torch.mul((1 - aug_weight), fuse_embeds)
 
         vp_txt_embeds = self.local_encoder.encoder(txt_embeds, txt_masks, vp_knowledges_embeds, fuse_masks)
         gmap_embeds = vp_txt_embeds[:, vp_embeds.shape[1]:]
