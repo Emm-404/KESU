@@ -681,7 +681,6 @@ class GlocalTextPathNavCMT(BertPreTrainedModel):
 
         self.knowledges_linear = nn.Linear(config.hidden_size, 1)
         self.txt_linear = nn.Linear(config.hidden_size, 1)
-        self.fuse_linear = nn.Linear(config.hidden_size, 1)
         self.sigmoid = nn.Sigmoid()
         self.knowledge_proj = nn.Linear(512, 768)
 
@@ -729,7 +728,7 @@ class GlocalTextPathNavCMT(BertPreTrainedModel):
                 knowledges_embeds, None,
             )
 
-        aug_weight = self.instr_sigmoid(self.knowledges_linear(vp_knowledges_embeds) + self.txt_linear(txt_embeds))
+        aug_weight = self.sigmoid(self.knowledges_linear(vp_knowledges_embeds) + self.txt_linear(txt_embeds))
         vp_knowledges_embeds = torch.mul(aug_weight, vp_knowledges_embeds) + torch.mul((1 - aug_weight), txt_embeds)
 
 
