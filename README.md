@@ -20,3 +20,12 @@
    mkdir -p datasets/pretrained 
    wget https://nlp.cs.unc.edu/data/model_LXRT.pth -P datasets/pretrained
    ```
+### 2.Pre-training  
+To pre-train the model, execute the provided shell script.The following commands respectively start the pre-training for the R2R, REVERIE, and SOON tasks.
+```pretrain
+cd pretrain_src
+bash run_r2r.sh
+bash run_reverie.sh
+bash run_soon.sh
+```
+
