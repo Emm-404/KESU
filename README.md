@@ -29,3 +29,11 @@ bash run_reverie.sh
 bash run_soon.sh
 ```
 
+### 3.Fine-tuning  
+To fine-tune the model, execute the provided shell script.The following commands respectively start the fine-tune for the R2R, REVERIE, and SOON tasks.
+```fine-tune
+cd map_nav_src
+bash scripts/run_r2r.sh
+bash scripts/run_reverie.sh
+bash scripts/run_soon.sh
+```
