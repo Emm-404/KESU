@@ -4,7 +4,7 @@
 
 ### 1.Requirements and Installation
   
-1.**Install MatterPort3D Simulator:** Start by installing the MatterPort3D simulator from the official [MatterPort3D](https://github.com/peteanderson80/Matterport3DSimulator).
+1.**Install MatterPort3D Simulator:** Start by installing the MatterPort3D simulator from the official [MatterPort3D](https://github.com/peteanderson80/Matterport3DSimulator).  
 
 2. **Install requirements:**
 ```setup
