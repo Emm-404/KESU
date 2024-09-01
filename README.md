@@ -42,4 +42,4 @@ bash scripts/run_soon.sh
 
 ### 4.Visualization
   
-1.Trajectory visualization is provided by [Speaker-Follower](https://gist.github.com/ronghanghu/d250f3a997135c667b114674fc12edae)
+1. Trajectory visualization is provided by [Speaker-Follower](https://gist.github.com/ronghanghu/d250f3a997135c667b114674fc12edae)
